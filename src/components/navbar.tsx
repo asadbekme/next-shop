@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="flex items-center px-4 md:px-12 py-2 justify-between fixed top-0 w-full z-50 shadow bg-white">
+    <header className="flex items-center px-4 md:px-12 py-0 justify-between fixed top-0 w-full z-50 shadow bg-white">
       <Link href={"/"}>
         <Image src={"/shop.jpeg"} alt="logo image" width={100} height={20} />
       </Link>

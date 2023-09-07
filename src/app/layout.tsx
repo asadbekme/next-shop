@@ -1,9 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Navbar from "@/components/navbar";
 
-const roboto = Roboto({ subsets: ["latin"], style: "normal", weight: "500" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: "500",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={montserrat.className}>
         <Navbar />
         {children}
       </body>
