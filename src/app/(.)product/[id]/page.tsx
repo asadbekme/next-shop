@@ -6,9 +6,10 @@ import { ProductType } from "@/interfaces";
 import { Dialog } from "@headlessui/react";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
+import ReactStars from "react-stars";
 import CustomImage from "@/components/image";
 
-const ProductDetailPage = () => {
+const ProductDetailModal = () => {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState<ProductType>();
   const [isOpen, setIsOpen] = useState(true);
@@ -62,7 +63,7 @@ const ProductDetailPage = () => {
                       <p>Rating: {product?.rating.rate}</p>
                       {product?.rating.rate && (
                         <div className="flex items-center ml-2 mr-6">
-                          {Array.from(
+                          {/* {Array.from(
                             {
                               length: Math.floor(product.rating.rate),
                             },
@@ -83,7 +84,11 @@ const ProductDetailPage = () => {
                                 className="h-4 w-4 text-yellow-500"
                               />
                             )
-                          )}
+                          )} */}
+                          <ReactStars
+                            value={product.rating.rate}
+                            edit={false}
+                          />
                         </div>
                       )}
                       <p className="text-blue-600 hover:underline cursor-pointer text-xs">
@@ -116,4 +121,4 @@ const ProductDetailPage = () => {
   );
 };
 
-export default ProductDetailPage;
+export default ProductDetailModal;
