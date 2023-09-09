@@ -5,7 +5,7 @@ import { ProductType } from "@/interfaces";
 import Link from "next/link";
 import CustomImage from "./image";
 
-const Product: FC<{ product: ProductType }> = ({ product }) => {
+const ProductCard: FC<{ product: ProductType }> = ({ product }) => {
   return (
     <Link
       href={`/product/${product.id}`}
@@ -28,4 +28,4 @@ const Product: FC<{ product: ProductType }> = ({ product }) => {
   );
 };
 
-export default Product;
+export default ProductCard;
