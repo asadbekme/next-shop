@@ -7,6 +7,7 @@ import { Dialog } from "@headlessui/react";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import ReactStars from "react-stars";
+import toast from "react-hot-toast";
 import CustomImage from "@/components/image";
 
 const ProductDetailModal = () => {
@@ -16,6 +17,30 @@ const ProductDetailModal = () => {
 
   const { id } = useParams();
   const router = useRouter();
+
+  const handleAddToCart = () => {
+    const products: ProductType[] =
+      JSON.parse(localStorage.getItem("carts") as string) || [];
+    // console.log(products);
+
+    const isExistingProduct = products.find((item) => item.id === product?.id);
+
+    if (isExistingProduct) {
+      const newData = products.map((item) => {
+        if (item.id === product?.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+
+        return item;
+      });
+
+      localStorage.setItem("carts", JSON.stringify(newData));
+    } else {
+      const data = [...products, { ...product, quantity: 1 }];
+      localStorage.setItem("carts", JSON.stringify(data));
+    }
+    toast.success("Product added to your bag!");
+  };
 
   useEffect(() => {
     async function getData() {
@@ -101,7 +126,10 @@ const ProductDetailModal = () => {
                   </div>
 
                   <div className="space-y-3 text-sm">
-                    <button className="button w-full bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black">
+                    <button
+                      className="button w-full bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black"
+                      onClick={handleAddToCart}
+                    >
                       Add to bag
                     </button>
                     <button
