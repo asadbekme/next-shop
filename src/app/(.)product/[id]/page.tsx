@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ProductType } from "@/interfaces";
 import { Dialog } from "@headlessui/react";
-import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
+// import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+// import { StarIcon } from "@heroicons/react/24/solid";
 import ReactStars from "react-stars";
 import toast from "react-hot-toast";
 import CustomImage from "@/components/image";
@@ -21,7 +21,6 @@ const ProductDetailModal = () => {
   const handleAddToCart = () => {
     const products: ProductType[] =
       JSON.parse(localStorage.getItem("carts") as string) || [];
-    // console.log(products);
 
     const isExistingProduct = products.find((item) => item.id === product?.id);
 
