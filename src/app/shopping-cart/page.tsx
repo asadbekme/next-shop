@@ -1,13 +1,21 @@
 "use client";
 
-import CustomImage from "@/components/image";
-import { ProductType } from "@/interfaces";
+import { useState } from "react";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
+import CustomImage from "@/components/image";
+import { ProductType } from "@/interfaces";
 
 const ShoppingCartPage = () => {
-  const products: ProductType[] =
-    JSON.parse(localStorage.getItem("carts") as string) || [];
+  const [products, setProducts] = useState<ProductType[]>(
+    JSON.parse(localStorage.getItem("carts") as string) || []
+  );
+
+  const removeProduct = (id: number) => {
+    const updatedCart = products.filter((product) => product.id !== id);
+    localStorage.setItem("carts", JSON.stringify(updatedCart));
+    setProducts(updatedCart);
+  };
 
   return (
     <div className="bg-gray-100 pt-28">
@@ -94,6 +102,7 @@ const ShoppingCartPage = () => {
                       stroke-width="1.5"
                       stroke="currentColor"
                       className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                      onClick={() => removeProduct(product.id)}
                     >
                       <path
                         stroke-linecap="round"
