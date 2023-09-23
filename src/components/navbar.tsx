@@ -10,10 +10,13 @@ const Navbar = () => {
       <div className="flex items-center space-x-2.5 text-sm">
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
           <Link href={"/"} className="mr-5 hover:text-gray-900">
-            Home page
+            Home
           </Link>
           <Link href={"/products"} className="mr-5 hover:text-gray-900 ">
             All products
+          </Link>
+          <Link href={"/contact"} className="mr-5 hover:text-gray-900 ">
+            Contact
           </Link>
         </nav>
         <Link href={"/shopping-cart"}>
