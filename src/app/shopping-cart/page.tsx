@@ -189,7 +189,7 @@ const ShoppingCartPage = () => {
                 <p className="text-xl font-bold">Total</p>
                 <div>
                   <p className="mb-1 text-lg font-bold">
-                    {(total + 10).toLocaleString("en-US", {
+                    {(total + 7).toLocaleString("en-US", {
                       currency: "usd",
                       style: "currency",
                     })}
