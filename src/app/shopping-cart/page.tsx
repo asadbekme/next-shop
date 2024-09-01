@@ -10,9 +10,7 @@ import Link from "next/link";
 
 const ShoppingCartPage = () => {
   const [total, setTotal] = useState<number>(0);
-  const [products, setProducts] = useState<ProductType[]>(
-    JSON.parse(localStorage.getItem("carts") as string) || []
-  );
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   const removeProduct = (id: number) => {
     const updatedCart = products.filter((product) => product.id !== id);
@@ -51,6 +49,11 @@ const ShoppingCartPage = () => {
       setProducts(updatedCart);
     }
   };
+
+  useEffect(() => {
+    const savedValue = localStorage.getItem("carts");
+    setProducts(savedValue ? JSON.parse(savedValue) : []);
+  }, []);
 
   useEffect(() => {
     const totalPrice = products.reduce((acc, product) => {
