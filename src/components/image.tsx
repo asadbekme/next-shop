@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import Image from "next/image";
 import { ProductType } from "@/interfaces";
+import { cn } from "@/lib/utils";
 
 interface CustomImageProps {
   product: ProductType;
@@ -19,12 +20,8 @@ const CustomImage: FC<CustomImageProps> = ({ product, fill }) => {
           src={product.image}
           alt={product.title}
           fill
-          className={`object-contain duration-700 ease-in-out group-hover:opacity-75 ${
-            isLoading
-              ? "scale-110 blur-2xl grayscale"
-              : "scale-100 blur-0 grayscale-0"
-          }}`}
-          onLoadingComplete={() => setIsLoading(false)}
+          className={cn("object-contain duration-700 ease-in-out group-hover:opacity-75", isLoading ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0")}
+          onLoad={() => setIsLoading(false)}
         />
       ) : (
         <Image
@@ -32,12 +29,8 @@ const CustomImage: FC<CustomImageProps> = ({ product, fill }) => {
           alt={product.title}
           width={250}
           height={200}
-          className={`object-contain duration-700 ease-in-out group-hover:opacity-75 ${
-            isLoading
-              ? "scale-110 blur-2xl grayscale"
-              : "scale-100 blur-0 grayscale-0"
-          }}`}
-          onLoadingComplete={() => setIsLoading(false)}
+          className={cn("object-contain duration-700 ease-in-out group-hover:opacity-75", isLoading ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0")}
+          onLoad={() => setIsLoading(false)}
         />
       )}
     </>
